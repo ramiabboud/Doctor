@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Health </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-dark bg-dark navbar-expand-lg fixed-top ">
+          <a class="navbar-brand logo" href="#"></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+              aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <ul class="navbar-nav navbar-center">
+                  <li class="nav-item text-center"><a class=" nav-link active" href="#">Home <span
+                              class="sr-only">(current)</span></a></li>
+                  <li class="nav-item text-center"><a class=" nav-link" href="#">Blogs</a></li>
+                  <li class="nav-item text-center"><a href="#"><img src="/assets//img/logo.png" class="logo"></a></li>
+                  <li class="nav-item text-center"><a class=" nav-link" href="#">About Us</a></li>
+              </ul>
+              <ul class="navbar-nav ml-auto">
+                  <li class="nav-item text-center dropdown show">
+                      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="fas fa-user"></i>
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+         
+                          <a class="dropdown-item" href="#">LogOut </a>
+                          
+                      </div>
+                  </li>
+              </ul>
+          </div>
+      </nav>
+  </header>
+    <!--Start Table of patients-->
+    
+    <div class="container" style="height:90vh; ">
+        <h1 class="text-center mt-5 " style="padding: 40px;">My patients</h1>
+        <a href="/register">Add Doctor</a>
+    <div class="row">
+      
+	<div class="container">
+    		<div th:if="${not #lists.isEmpty(doctors)}">
+   
+        <table class="table table-striped mt-5" >
+            <thead>
+              
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">FirstName</th>
+                <th scope="col">LastName</th>
+                <th scope="col">Age</th>
+                <th scope="col">Doctor Name</th>
+                <th scope="col">Section</th>
+                <th scope="col">Actions</th>
+              
+              </tr>
+           
+            </thead>
+        
+         
+    			
+            <tbody>
+              <tr th:each="doctor : ${doctors}">
+              
+                <td th:text="${doctor.id}"></td>
+                <td th:text="${doctor.firstName}"></td>
+                <td th:text="${doctor.lastName}"></td>
+                <td th:text="${doctor.number}"></td>
+                <td >1</td>
+                
+                <td><a th:href="${'/show/' + doctor.id}"> <button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button></a>
+                  <a th:href="${'/edit/' + doctor.id}"><button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button></a>
+                <a th:href="${'/delete/' + doctor.id}"><button type="button"  class="btn btn-danger"><i class="far fa-trash-alt"></i></button></a>
+                </td>
+              </tr>
+              
+              
+            </tbody>
+          </table>
+       </div>
+       </div>
+
+    </div>
+ 
+    </div>
+    <footer>
+      <div class="footer">
+          <div class="row h-100 justify-content-center mr-0 ml-0">
+              <div id="sitemap" class="col-xl-4 footer-item pl-5">
+                  <img class="footer-logo" src="/assets/img/logo.png" width="150">
+              </div>
+
+              <div id="sitemap" class="col-xl-4 footer-item pl-5">
+                  <h3>
+                      Sitemap
+                  </h3>
+                  <ul>
+                      <li><a href="">Home</a></li>
+                      <li><a href="">Categories</a></li>
+                      <li><a href="">Blogs</a></li>
+                      <li><a href="">My patient</a></li>
+                  </ul>
+              </div>
+
+              <div class="col-xl-4 footer-item first ">
+                 
+                  <h3>
+                      HEADQUARTER
+                  </h3>
+                  <p class="text"> Syria - Damascus </p>
+                  <h3>
+                      MOBILE
+                  </h3>
+                  00963933696236 <br>
+                  <br>
+              </div>
+
+          </div>
+
+  </footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
